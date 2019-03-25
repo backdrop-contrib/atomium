@@ -3,17 +3,17 @@
 [![GitHub issues](https://img.shields.io/github/issues/ec-europa/atomium.svg)](https://github.com/ec-europa/atomium/issues?q=is:open+is:issue) 
 [![Current Release](https://img.shields.io/github/release/ec-europa/atomium.svg)](https://github.com/ec-europa/atomium/releases)
 
-The Atomium theme is a Drupal 7 base theme.
+The Atomium theme is a base theme.
 
 The goal of this base theme is to rewrite most of the core theme functions of
-Drupal and use proper render arrays and templates instead.
+Backdrop and use proper render arrays and then templates instead.
 This will allow users to customize most of the elements in a custom
 sub-theme using preprocess functions or by providing a custom template.
 
 Table of contents:
 =================
-- [Installation](#installation)
-- [Requirements](#requirements)
+- [Installation](#installation-and-usage)
+- [Issues](#issues)
 - [Activation](#activation)
 - [Configuration](#configuration)
 - [Contributing](#contributing)
@@ -21,25 +21,35 @@ Table of contents:
 - [Developers note](#developers-note)
 - [Known issues](#known-issues)
 - [In the press](#in-the-press)
+- [Current maintainers](#current-maintainers)
+- [Credits](#credits)
+- [License](#license)
 
 [Go to top](#table-of-content)
 
-# Installation
-[Download the theme manually](https://www.drupal.org/docs/7/extending-drupal/installing-themes) or using [Drush](https://drupal.org/project/drush).
+# Installation and Usage
+
+- Install this module using the [official Backdrop CMS instructions](https://backdropcms.org/guide/themes)
+
+# Issues
+
+ - Bugs and Feature requests should be reported in the [Issue Queue](https://github.com/backdrop-contrib/atomium/issues).
 
 # Requirements
 * PHP: greater or equal to version 5.6.
-* Drupal 7: latest stable version,
+* Backdrop 1.x: latest stable version,
 
 [Go to top](#table-of-content)
 
 # Activation
-To enable the theme, go to **admin/appearance** and select
-an Atomium based theme.
+To enable the theme, go to **admin/appearance** and select an Atomium
+based theme.
 
-Atomium comes with "Atomium Bartik" sub-theme provided as an example, it can
-be used as a starter-kit as well.
-It is a fork of the Bartik core theme but based on Atomium.
+Atomium comes with a sub-theme provided as example.
+
+ - Atomium Basis.
+ 
+Atomium Basis is a fork of the Basis core theme using the Atomium mechanisms.
 
 The sub-theme provide examples of *preprocess* functions and templates so you
 can craft your own theme quickly.
@@ -47,26 +57,16 @@ can craft your own theme quickly.
 [Go to top](#table-of-content)
 
 # Configuration
-Atomium is not intended to be a full featured theme as you might find on
-drupal.org, full of configurable settings and with a friendly user interface.
+Atomium is not intended to be a full featured and fancy theme,
+full of configurable settings and with a friendly user interface.
 The sole purpose of this theme is to provide clean markup that you can
 easily extend.
 
-However, Atomium provides the following settings:
+In order to easily see which template is used, enable the `theme debug mode`
+option provided by the [devel contrib module](https://github.com/backdrop-contrib/devel).
 
- - Enable theme debug mode.
- - Allow CSS double underscore.
- 
-As of Drupal 7.33, Drupal core has a theme debug mode that can be enabled and
-disabled via the **theme_debug** variable.
-Theme debug mode can be used to see possible template suggestions and the
+The `theme debug mode` can be used to see possible template suggestions and the
 locations of template files right in your HTML markup (as HTML comments).
-
-As of Drupal 7.51, a new **allow_css_double_underscores** variable has been
-added to allow for double underscores in CSS identifiers. In order to allow
-CSS identifiers to contain double underscores (*.example__selector*) for
-Drupal's [BEM-style naming standards](http://getbem.com/), this variable
-can be set to TRUE.
 
 [Go to top](#table-of-content)
 
@@ -78,94 +78,9 @@ Atomium repository.
 
 To ensure its code quality, Atomium depends on: 
  - [GrumPHP](https://github.com/phpro/grumphp)
- - [Drupal conventions](https://github.com/drupol/drupal-conventions)
+ - [Backdrop conventions](https://github.com/drupol/backdrop-conventions)
 
 In order to use it and pass the automated tests, run:
-
-## Using Docker Compose
-
-A very easy and handy way to speed up the environment is by using [Docker](https://www.docker.com/get-docker) and 
-[Docker Compose](https://docs.docker.com/compose/).
-
-Docker provides the necessary services and tools such as a web server and a database server to get the site running, 
-regardless of your local host configuration.
-
-### Requirements:
-
-- [Docker](https://www.docker.com/get-docker)
-- [Docker Compose](https://docs.docker.com/compose/)
-
-### Configuration
-
-By default, Docker Compose reads two files, a `docker-compose.yml` and an optional `docker-compose.override.yml` file.
-By convention, the `docker-compose.yml` contains your base configuration and it is provided by default.
-The override file, as its name implies, can contain configuration overrides for existing services or entirely new 
-services.
-If a service is defined in both files, Docker Compose merges the configurations.
-
-Find more information on Docker Compose extension mechanism on [the official Docker Compose documentation](https://docs.docker.com/compose/extends/).
-
-### Usage
-
-To start, run:
-
-```bash
-docker-compose up
-```
-
-It is advised to not daemonise `docker-compose` so it can be turned off (`CTRL+C`) quickly when it is not anymore needed.
-However, there is an option to run docker on background by using the flag `-d`:
-
-```bash
-docker-compose up -d
-```
-
-Then:
-
-```bash
-docker-compose exec web composer install
-docker-compose exec web ./vendor/bin/taskman drupal:site-install
-```
-
-Using default configuration, the development site files should be available in the `build` directory and the development site
-should be available at: [http://127.0.0.1:8080/build](http://127.0.0.1:8080/build).
-
-### Running the tests
-
-To run the grumphp checks:
-
-```bash
-docker-compose exec web ./vendor/bin/grumphp run
-```
-
-To run the phpunit tests:
-
-```bash
-docker-compose exec web ./vendor/bin/phpunit
-```
-## Without docker
-`$ composer install`
-
-This will:
-
-  1. Build a target test site in `./build`
-  2. Run `$ ./vendor/bin/taskman drupal:site-setup` which will setup site and tests configuration files, such as `phpunit.xml`
-
-After that:
-
-  1. Copy `taskman.yml.dist` into `taskman.yml` and customize it according to your local environment
-  2. Install the site by running `$ ./vendor/bin/taskman drupal:site-install`
-
-For a list of available commands run:
-
-```
-./vendor/bin/taskman
-```
-
-For more information about how to customise the building process check [PHP Taskman](https://github.com/php-taskman/core)
-project page.
-
-[Go to top](#table-of-content)
 
 # Extending
 
@@ -194,7 +109,7 @@ To add a component in there, your component needs to define two hooks:
    This hook allows you to define simply a component.
  - hook_atomium_definition_form_hook().
    
-   This hook allows you to define one or multiple components in a Drupal form.
+   This hook allows you to define one or multiple components in a Backdrop form.
    
 For a better understanding and examples, see the [atomium.api.php](https://github.com/ec-europa/atomium/blob/7.x-1.x/atomium/atomium.api.php) file.
   
@@ -206,27 +121,27 @@ process/preprocess is added or removed.
 # Developer's note
 
 During the development of this project, a lot of time has been put into
-analyzing how Drupal's core functions were implemented and how to improve them
+analyzing how Backdrop's core functions were implemented and how to improve them
 for better customization.
 
 A good example of this is the breadcrumb generation.
 
-Let's analyse how it is currently done in Drupal and how it is implemented on this project.
+Let's analyse how it is currently done in Backdrop and how it is implemented on this project.
 
 ````php
-$variables['breadcrumb'] = theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb()));
+$variables['breadcrumb'] = theme('breadcrumb', array('breadcrumb' => backdrop_get_breadcrumb()));
 ````
 
-By default, Drupal uses the function *drupal_get_breadcrumb()* in its
+By default, Backdrop uses the function *backdrop_get_breadcrumb()* in its
 *template_process_page()* hook.
 
-The function *drupal_get_breadcrumb()* returns raw HTML.
+The function *backdrop_get_breadcrumb()* returns raw HTML.
 Thus, it is impossible to alter the breadcrumbs links properly.
 
 In order to get a render array, it requires a deeper analyse and rewrite functions
 accordingly.
 
-*drupal_get_breadcrumb()* calls *menu_get_active_breadcrumb()*.
+*backdrop_get_breadcrumb()* calls *menu_get_active_breadcrumb()*.
 This is actually the function that returns the HTML.
 
 There is no way to alter the result of that function as it returns an array of
@@ -239,11 +154,11 @@ the breadcrumb is generated changed, by overriding the default one as shown belo
 ````php
   $variables['breadcrumb'] = array(
     '#theme' => array('breadcrumb'),
-    '#breadcrumb' => atomium_drupal_get_breadcrumb(),
+    '#breadcrumb' => atomium_backdrop_get_breadcrumb(),
   );
 ````
 
-*atomium_drupal_get_breadcrumb()* is an Atomium internal function written only
+*atomium_backdrop_get_breadcrumb()* is an Atomium internal function written only
 for the breadcrumb handling. Instead of calling *menu_get_active_breadcrumb()*,
 it calls *atomium_menu_get_active_breadcrumb()* which is also a
 custom Atomium function that, instead of returning an array of raw HTML links,
@@ -261,7 +176,7 @@ You have to use:
 <?php print render($breadcrumb); ?>
 ````
 
-The rendering process is at the very end of the Drupal's chain of preprocess,
+The rendering process is at the very end of the Backdrop's chain of preprocess,
 process and render functions.
 
 [Go to top](#table-of-content)
@@ -278,3 +193,17 @@ process and render functions.
 * [A word about Atomium](http://not-a-number.io/2017/a-word-about-atomium)
 
 [Go to top](#table-of-content)
+
+# Current Maintainers
+
+- Pol Dellaiera (https://github.com/drupol).
+
+# Credits
+
+- Ported to Backdrop CMS by Pol Dellaiera (https://github.com/drupol).
+- Originally written for Backdrop by the European Commission (https://www.drupal.org/european-commission).
+
+# License
+
+This project is GPL v2 software. See the [LICENSE.txt](LICENSE.txt) file in this directory for
+complete text.
