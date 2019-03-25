@@ -111,3 +111,11 @@ function atomium_preprocess_item_list(array &$variables, $hook) {
   $variables['atomium']['attributes']['list']->merge($variables['attributes']);
   $variables['atomium']['attributes']['wrapper']->merge($variables['wrapper_attributes']);
 }
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function atomium_preprocess_item_list__links__dropbutton(array &$variables,$hook) {
+  $variables['wrapper'] = FALSE;
+  $variables['atomium']['attributes']['list']->append('class', 'dropbutton');
+}

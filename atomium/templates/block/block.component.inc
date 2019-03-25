@@ -137,8 +137,16 @@ function atomium_preprocess_block(array &$variables, $hook) {
 
   $variables['atomium']['attributes']['wrapper']->append('class', drupal_html_class('block-' . $variables['block']->module));
 
+  $variables += array('classes' => array());
+  $variables['atomium']['attributes']['wrapper']->merge(array('class' => $variables['classes']));
+
   $variables['title']['#markup'] = '';
   if ($variables['block']->subject) {
     $variables['title']['#markup'] = $variables['block']->subject;
+  }
+
+  if (isset($variables['attributes'])) {
+    $variables['atomium']['attributes']['wrapper']
+      ->merge($variables['attributes']);
   }
 }

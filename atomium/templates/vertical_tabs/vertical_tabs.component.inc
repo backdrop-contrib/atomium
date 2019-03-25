@@ -21,7 +21,7 @@ function atomium_atomium_theme_vertical_tabs(array $existing, $type, $theme, $pa
  * Implements hook_preprocess_hook().
  */
 function atomium_preprocess_vertical_tabs(array &$variables, $hook) {
-  drupal_add_library('system', 'drupal.vertical-tabs');
+  backdrop_add_library('system', 'backdrop.vertical-tabs');
 
   $variables['atomium']['attributes']['wrapper']->append('class', 'vertical-tabs-panes');
 }

@@ -160,3 +160,10 @@ function atomium_preprocess_links(array &$variables, $hook) {
     ),
   );
 }
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function atomium_preprocess_links__contextual(array &$variables, $hook) {
+  $variables['atomium']['attributes']['wrapper']->append('class', 'contextual-links');
+}

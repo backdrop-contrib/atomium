@@ -50,12 +50,12 @@ function atomium_preprocess_tablesort_indicator(array &$variables, $hook) {
   );
 
   if ($variables['style'] === 'asc') {
-    $image['#path'] = 'misc/arrow-asc.png';
+    $image['#path'] = 'core/misc/arrow-asc.png';
     $image['#alt'] = $image['#title'] = t('sort ascending');
     $direction = 'asc';
   }
   else {
-    $image['#path'] = 'misc/arrow-desc.png';
+    $image['#path'] = 'core/misc/arrow-desc.png';
     $image['#alt'] = $image['#title'] = t('sort descending');
     $direction = 'desc';
   }

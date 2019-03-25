@@ -35,8 +35,11 @@ function atomium_preprocess_menu_local_tasks(array &$variables, $hook) {
       '#theme' => _atomium_extend_theme_hook('item_list', $variables['theme_hook_original'] . '__primary'),
       '#items' => $variables['primary'],
       '#type' => $variables['type'],
-      '#attributes' => $variables['atomium']['attributes']['primary']->toArray(),
-      '#wrapper_attributes' => array(),
+      '#atomium' => array(
+        'attributes' => array(
+          'list' => $variables['atomium']['attributes']['primary']->toArray(),
+        ),
+      ),
     );
   }
 
@@ -45,8 +48,11 @@ function atomium_preprocess_menu_local_tasks(array &$variables, $hook) {
       '#theme' => _atomium_extend_theme_hook('item_list', $variables['theme_hook_original'] . '__secondary'),
       '#items' => $variables['secondary'],
       '#type' => $variables['type'],
-      '#attributes' => $variables['atomium']['attributes']['secondary']->toArray(),
-      '#wrapper_attributes' => array(),
+      '#atomium' => array(
+        'attributes' => array(
+          'list' => $variables['atomium']['attributes']['secondary']->toArray(),
+        ),
+      ),
     );
   }
 }

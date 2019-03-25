@@ -57,7 +57,7 @@ function atomium_preprocess_textfield(array &$variables, $hook) {
 
   if (isset($variables['element']['#autocomplete_path']) &&
     !empty($variables['element']['#autocomplete_input'])) {
-    drupal_add_library('system', 'drupal.autocomplete');
+    backdrop_add_library('system', 'backdrop.autocomplete');
     $attributes['class'][] = 'form-autocomplete';
 
     $variables['suffix'] = array(

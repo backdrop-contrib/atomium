@@ -27,7 +27,7 @@ function atomium_atomium_theme_file_icon(array $existing, $type, $theme, $path) 
 function atomium_atomium_definition_file_icon() {
   $icon_directory = variable_get('file_icon_directory', drupal_get_path('module', 'file') . '/icons');
 
-  $file = new stdClass();
+  $file = new File();
   $file->filemime = 'application/pdf';
 
   return array(

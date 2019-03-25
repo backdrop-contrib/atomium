@@ -15,6 +15,7 @@ function atomium_atomium_theme_image_style(array $existing, $type, $theme, $path
       'variables' => array(
         'style_name' => NULL,
         'path' => NULL,
+        'uri' => NULL,
         'width' => NULL,
         'height' => NULL,
         'alt' => '',
@@ -45,9 +46,9 @@ function atomium_preprocess_image_style(array &$variables, $hook) {
   }
 
   // Determine the URL for the styled image.
-  $variables['path'] = image_style_url(
+  $variables['uri'] = image_style_url(
     $variables['style_name'],
-    $variables['path']
+    $variables['uri']
   );
 
   $variables[$variables['base_hook']] = array(
@@ -56,7 +57,7 @@ function atomium_preprocess_image_style(array &$variables, $hook) {
         'image',
         $variables['theme_hook_original']
       ),
-      '#path' => $variables['path'],
+      '#uri' => $variables['uri'],
       '#width' => $variables['width'],
       '#height' => $variables['height'],
       '#alt' => isset($variables['alt']) ? $variables['alt'] : NULL,

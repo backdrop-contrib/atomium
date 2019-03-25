@@ -99,5 +99,12 @@ function atomium_preprocess_page(array &$variables, $hook) {
     ),
   );
 
-  unset($variables['page']['content']['#theme_wrappers']);
+  $variables += array(
+    'classes' => array(),
+    'html_attributes' => array(),
+    'body_attributes' => array(),
+  );
+  $variables['atomium']['attributes']['body']->append('class', $variables['classes']);
+  $variables['atomium']['attributes']['html']->merge($variables['html_attributes']);
+  $variables['atomium']['attributes']['body']->merge($variables['body_attributes']);
 }

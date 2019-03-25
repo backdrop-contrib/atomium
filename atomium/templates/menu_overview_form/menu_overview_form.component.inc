@@ -23,8 +23,8 @@ function atomium_atomium_theme_menu_overview_form(array $existing, $type, $theme
 function atomium_preprocess_menu_overview_form(array &$variables, $hook) {
   $form = $variables['form'];
 
-  drupal_add_tabledrag('menu-overview', 'match', 'parent', 'menu-plid', 'menu-plid', 'menu-mlid', TRUE, MENU_MAX_DEPTH - 1);
-  drupal_add_tabledrag('menu-overview', 'order', 'sibling', 'menu-weight');
+  backdrop_add_tabledrag('menu-overview', 'match', 'parent', 'menu-plid', 'menu-plid', 'menu-mlid', TRUE, MENU_MAX_DEPTH - 1);
+  backdrop_add_tabledrag('menu-overview', 'order', 'sibling', 'menu-weight');
 
   $header = array(
     t('Menu link'),

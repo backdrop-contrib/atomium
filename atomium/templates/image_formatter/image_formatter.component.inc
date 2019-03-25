@@ -82,7 +82,7 @@ function atomium_preprocess_image_formatter(array &$variables, $hook) {
         )
       ),
       '#style_name' => $variables['image_style'],
-      '#path' => $item['uri'],
+      '#uri' => $item['uri'],
       '#width' => $item['width'],
       '#height' => $item['height'],
       '#alt' => isset($item['alt']) ? $item['alt'] : NULL,
@@ -98,7 +98,7 @@ function atomium_preprocess_image_formatter(array &$variables, $hook) {
           $variables['theme_hook_original'],
         )
       ),
-      '#path' => isset($item['uri']) ? $item['uri'] : NULL,
+      '#uri' => isset($item['uri']) ? $item['uri'] : NULL,
       '#width' => isset($item['width']) ? $item['width'] : NULL,
       '#height' => isset($item['height']) ? $item['height'] : NULL,
       '#alt' => isset($item['alt']) ? $item['alt'] : NULL,

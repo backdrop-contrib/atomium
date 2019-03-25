@@ -45,7 +45,7 @@ function atomium_preprocess_feed_icon(array &$variables, $hook) {
       '#theme' => _atomium_extend_theme_hook('link', $variables['theme_hook_original']),
       '#text' => array(
         '#theme' => _atomium_extend_theme_hook('image__link', $variables['theme_hook_original']),
-        '#path' => 'misc/feed.png',
+        '#path' => 'core/misc/feed.png',
         '#width' => 16,
         '#height' => 16,
         '#alt' => $text,

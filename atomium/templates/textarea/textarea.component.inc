@@ -53,7 +53,7 @@ function atomium_preprocess_textarea(array &$variables, $hook) {
 
   // Add resizable behavior.
   if (!empty($variables['element']['#resizable'])) {
-    drupal_add_library('system', 'drupal.textarea');
+    backdrop_add_library('system', 'backdrop.textarea');
     $wrapper_attributes_array['class'][] = 'resizable';
   }
 

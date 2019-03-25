@@ -27,19 +27,19 @@ function atomium_preprocess_status_report(array &$variables, $hook) {
   $severities = array(
     REQUIREMENT_INFO => array(
       'title' => t('Info'),
-      'class' => 'info',
+      'class' => 'report-info',
     ),
     REQUIREMENT_OK => array(
       'title' => t('OK'),
-      'class' => 'ok',
+      'class' => 'report-status',
     ),
     REQUIREMENT_WARNING => array(
       'title' => t('Warning'),
-      'class' => 'warning',
+      'class' => 'report-warning',
     ),
     REQUIREMENT_ERROR => array(
       'title' => t('Error'),
-      'class' => 'error',
+      'class' => 'report-error',
     ),
   );
 
@@ -55,9 +55,7 @@ function atomium_preprocess_status_report(array &$variables, $hook) {
 
     $requirement['value'] = isset($requirement['value']) ? $requirement['value'] : '';
 
-    $cells = array();
-
-    $cells[] = array(
+    $icon = array(
       'data' => array(
         'container' => array(
           '#theme' => 'html_tag',
@@ -78,49 +76,51 @@ function atomium_preprocess_status_report(array &$variables, $hook) {
         ),
       ),
       'class' => array(
-        'status-icon',
+        'report-icon',
       ),
     );
 
-    $cells[] = array(
+    $title = array(
       'data' => $requirement['title'],
       'class' => array(
         'status-title',
       ),
     );
 
-    $cells[] = array(
-      'data' => $requirement['value'],
+    $description = array(
+      'data' => array(
+        'container' => array(
+          '#theme' => 'html_tag',
+          '#tag' => 'div',
+          '#attributes' => array(
+            'class' => array(
+              'status-summary',
+            ),
+          ),
+          '#value' => $requirement['value'],
+        ),
+      ),
       'class' => array(
         'status-value',
       ),
     );
 
+    if (!empty($requirement['description'])) {
+      $description['data']['container']['#value'] .= ' <a class="description-toggle" href="#">more</a>' .
+        '<div class="status-description">' . $requirement['description'] . '</div>';
+    }
+
     $rows[] = array(
-      'data' => $cells,
+      'data' => array(
+        $icon,
+        $title,
+        $description,
+      ),
       'class' => array(
         $severity['class'],
       ),
     );
 
-    if (!empty($requirement['description'])) {
-      $requirement_description = array(
-        'data' => $requirement['description'],
-        'colspan' => 3,
-        'class' => array(
-          'status-description',
-        ),
-      );
-
-      $rows[] = array(
-        'data' => array(
-          'description' => $requirement_description,
-        ),
-        'class' => array(
-          $severity['class'],
-        ),
-      );
-    }
   }
 
   $table = array(
@@ -131,7 +131,19 @@ function atomium_preprocess_status_report(array &$variables, $hook) {
       )
     ),
     '#rows' => $rows,
+    '#atomium' => array(
+      'attributes' => array(
+        'wrapper' => array(
+          'class' => array(
+            'system-status-report',
+          ),
+        ),
+      ),
+    ),
   );
+
+  $path = backdrop_get_path('module', 'system');
+  backdrop_add_js($path . '/js/status.js');
 
   $variables[$variables['base_hook']] = array(
     $variables['base_hook'] => $table,
