@@ -8,7 +8,7 @@
 /**
  * Implements hook_atomium_theme_hook().
  *
- * In order to prevent infinite loop during a clear cache or during drupal
+ * In order to prevent infinite loop during a clear cache or during Backdrop
  * install, we have to generate the list of existing definitions in the
  * preprocess hook.
  */
@@ -75,7 +75,7 @@ function atomium_preprocess_atomium_overview(array &$variables, $hook) {
         $errors[$component][$dependency] = array(
           '#markup' => $message,
         );
-        drupal_set_message($message, 'warning', FALSE);
+        backdrop_set_message($message, 'warning', FALSE);
         $skip = TRUE;
         $definition['preview'] = array(
           '#theme' => 'item_list',
@@ -130,7 +130,7 @@ function atomium_preprocess_atomium_overview(array &$variables, $hook) {
     // Allow the use of a form.
     $function_name = $theme . '_atomium_definition_form_' . $component;
     if (\function_exists($function_name)) {
-      $definition['form'] = drupal_get_form($function_name);
+      $definition['form'] = backdrop_get_form($function_name);
     }
 
     // Disable the preview if we explicitly set the key disable to TRUE.

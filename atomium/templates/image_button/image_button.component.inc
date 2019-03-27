@@ -27,7 +27,7 @@ function atomium_atomium_definition_image_button() {
     'preview' => array(
       array(
         'title' => 'Image button',
-        'src' => drupal_get_path('theme', 'atomium') . '/assets/images/logo.png',
+        'src' => backdrop_get_path('theme', 'atomium') . '/assets/images/logo.png',
       ),
     ),
   );

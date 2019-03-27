@@ -5,7 +5,7 @@
  * preprocess.inc
  */
 
-use Drupal\atomium\AttributesContainer;
+use Backdrop\atomium\AttributesContainer;
 
 /**
  * Implements hook_preprocess().

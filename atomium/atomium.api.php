@@ -8,7 +8,7 @@
 /**
  * Register one or many Atomium component implementations.
  *
- * This function is a subfunction of the Drupal's hook_theme() hook.
+ * This function is a subfunction of the Backdrop's hook_theme() hook.
  * Its signature and the return values are identical.
  *
  * It must live in: [path_to_theme]/templates/[hook]/[hook].component.inc
@@ -53,7 +53,7 @@ function hook_atomium_definition_hook() {
  * It must live in: [path_to_theme]/templates/[hook]/[hook].component.inc.
  *
  * @return array
- *   The Drupal form.
+ *   The Backdrop form.
  */
 function hook_atomium_definition_form_hook($form, &$form_state) {
   $form['component'] = array(

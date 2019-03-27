@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Drupal\\atomium\\": "./atomium/includes/classes"
+            "Backdrop\\atomium\\": "./atomium/includes/classes"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\atomium\\": "./tests/src/"
+            "Backdrop\\Tests\\atomium\\": "./tests/src/"
         }
     },
     "repositories": [

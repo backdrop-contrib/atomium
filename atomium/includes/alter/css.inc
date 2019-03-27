@@ -21,7 +21,7 @@ function atomium_css_alter(array &$css) {
       continue;
     }
 
-    $css = drupal_add_css($css_file, array(
+    $css = backdrop_add_css($css_file, array(
       'group' => CSS_THEME,
       'every_page' => TRUE,
     ));
@@ -38,6 +38,6 @@ function atomium_css_alter(array &$css) {
       $excludes,
       \str_replace('.css', '-rtl.css', $excludes)
     );
-    $css = \array_diff_key($css, drupal_map_assoc($excludes));
+    $css = \array_diff_key($css, backdrop_map_assoc($excludes));
   }
 }

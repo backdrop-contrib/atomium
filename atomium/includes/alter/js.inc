@@ -20,7 +20,7 @@ function atomium_js_alter(array &$js) {
       continue;
     }
 
-    $js = drupal_add_js($js_file, array(
+    $js = backdrop_add_js($js_file, array(
       'group' => JS_THEME,
       'every_page' => TRUE,
     ));

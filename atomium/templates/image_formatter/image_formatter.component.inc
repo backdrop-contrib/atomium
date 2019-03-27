@@ -35,7 +35,7 @@ function atomium_atomium_definition_image_formatter() {
 
   if (module_exists('image')) {
     $source_uri = file_unmanaged_copy(
-      drupal_get_path('theme', 'atomium') . '/assets/images/logo.png',
+      backdrop_get_path('theme', 'atomium') . '/assets/images/logo.png',
       'public://'
     );
 
@@ -68,7 +68,7 @@ function atomium_preprocess_image_formatter(array &$variables, $hook) {
   $item = $variables['item'];
 
   // Do not output an empty 'title' attribute.
-  if (isset($item['title']) && drupal_strlen($item['title']) === 0) {
+  if (isset($item['title']) && backdrop_strlen($item['title']) === 0) {
     unset($item['title']);
   }
 

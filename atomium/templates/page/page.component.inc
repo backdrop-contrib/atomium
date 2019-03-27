@@ -24,7 +24,7 @@ function atomium_preprocess_page(array &$variables, $hook) {
   }
 
   // Custom 404.
-  $headers = drupal_get_http_header();
+  $headers = backdrop_get_http_header();
   if (isset($headers['status']) && $headers['status'] === '404 Not Found') {
     $variables['theme_hook_suggestions'][] = 'page__404';
   }
@@ -52,17 +52,17 @@ function atomium_preprocess_page(array &$variables, $hook) {
    */
   switch (current_path()) {
     case 'user':
-      drupal_set_title(t('Log in'));
+      backdrop_set_title(t('Log in'));
 
       break;
 
     case 'user/register':
-      drupal_set_title(t('Create new account'));
+      backdrop_set_title(t('Create new account'));
 
       break;
 
     case 'user/password':
-      drupal_set_title(t('Request new password'));
+      backdrop_set_title(t('Request new password'));
 
       break;
 
@@ -86,7 +86,7 @@ function atomium_preprocess_page(array &$variables, $hook) {
       'breadcrumb',
       $variables['theme_hook_original']
     ),
-    '#breadcrumb' => atomium_drupal_get_breadcrumb(),
+    '#breadcrumb' => atomium_backdrop_get_breadcrumb(),
   );
 
   $variables['action_links'] = array(

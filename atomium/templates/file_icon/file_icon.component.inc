@@ -25,7 +25,7 @@ function atomium_atomium_theme_file_icon(array $existing, $type, $theme, $path) 
  * Implements hook_atomium_definition_hook().
  */
 function atomium_atomium_definition_file_icon() {
-  $icon_directory = variable_get('file_icon_directory', drupal_get_path('module', 'file') . '/icons');
+  $icon_directory = variable_get('file_icon_directory', backdrop_get_path('module', 'file') . '/icons');
 
   $file = new File();
   $file->filemime = 'application/pdf';
@@ -49,7 +49,7 @@ function atomium_preprocess_file_icon(array &$variables, $hook) {
   $file = $variables['file'];
 
   if (isset($file->filemime)) {
-    $mimetype = drupal_html_class($file->filemime);
+    $mimetype = backdrop_html_class($file->filemime);
     // TODO: Add this to the #theme down under.
     $variables['theme_hook_suggestions'][] = $variables['theme_hook_original'] . '__' . $mimetype;
   }

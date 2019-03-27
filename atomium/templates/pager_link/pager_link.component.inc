@@ -57,7 +57,7 @@ function atomium_preprocess_pager_link(array &$variables, $hook) {
 
   $query = array();
   if (count($parameters)) {
-    $query = drupal_get_query_parameters($parameters, array());
+    $query = backdrop_get_query_parameters($parameters, array());
   }
   if ($query_pager = pager_get_query_parameters()) {
     $query = array_merge($query, $query_pager);

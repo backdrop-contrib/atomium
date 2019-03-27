@@ -27,7 +27,7 @@ function atomium_preprocess_system_compact_link(array &$variables, $hook) {
     '#path' => NULL,
     '#options' => array(
       'attributes' => array(),
-      'query' => drupal_get_destination(),
+      'query' => backdrop_get_destination(),
     ),
   );
 }

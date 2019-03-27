@@ -49,7 +49,7 @@ function _atomium_theme(array $existing, $type, $theme, $path) {
 
         return $hook;
       },
-      drupal_array_merge_deep(
+      backdrop_array_merge_deep(
         (array) $function_name(
           $existing,
           $type,
@@ -115,7 +115,7 @@ function _theme_post_process_registry(array &$cache, array $base_themes, $theme)
     $prefixes_data['theme_engine'],
     $prefixes_data['base_theme'],
     $prefixes_data['theme']);
-  $grouped_functions = drupal_group_functions_by_prefix();
+  $grouped_functions = backdrop_group_functions_by_prefix();
 
   // Reverse sort the registry.
   \krsort($cache);
@@ -137,7 +137,7 @@ function _theme_post_process_registry(array &$cache, array $base_themes, $theme)
 
       // Ensure "theme path" is set.
       $info += array(
-        'theme path' => drupal_dirname($theme->filename),
+        'theme path' => backdrop_dirname($theme->filename),
       );
 
       // Remove this member so each hook is independent and doesn't depend or
@@ -222,7 +222,7 @@ function _atomium_theme_find_processors(array $grouped_functions, array &$cache,
       ))) {
       foreach ($matches as $match) {
         // Determine the current theme implementation.
-        $base_hook = drupal_substr($match, drupal_strlen($prefix) + 1);
+        $base_hook = backdrop_substr($match, backdrop_strlen($prefix) + 1);
 
         if (!isset($cache[$base_hook])) {
           $cache[$base_hook] = $info;
@@ -244,7 +244,7 @@ function _atomium_theme_find_processors(array $grouped_functions, array &$cache,
  *   The prefixes.
  */
 function _atomium_theme_add_processors($hook, array &$info = array(), array $prefixes_data = array()) {
-  $hooks_stack = drupal_get_hook_parents($hook);
+  $hooks_stack = backdrop_get_hook_parents($hook);
 
   foreach (_atomium_theme_processors_phases() as $phase_key => $phase) {
     $callbacks = array();
@@ -354,7 +354,7 @@ function _atomium_theme_make_prefixes(array $base_themes, $theme) {
  * @return array
  *   Functions grouped by the first prefix.
  */
-function drupal_group_functions_by_prefix() {
+function backdrop_group_functions_by_prefix() {
   $functions = \get_defined_functions();
   $grouped_functions = array();
 
@@ -376,11 +376,11 @@ function drupal_group_functions_by_prefix() {
  * @return array
  *   The parent hooks stack.
  */
-function drupal_get_hook_parents($hook) {
+function backdrop_get_hook_parents($hook) {
   $stack = array($hook);
 
   while ($pos = \strrpos(\current($stack), '__')) {
-    $stack[] = drupal_substr(\current($stack), 0, $pos);
+    $stack[] = backdrop_substr(\current($stack), 0, $pos);
     \next($stack);
   }
 
@@ -414,7 +414,7 @@ function drupal_get_hook_parents($hook) {
  * @param array $registry
  *   The theme registry array, passed by reference.
  * @param object[] $themes
- *   The list of Drupal theme to process.
+ *   The list of Backdrop themes to process.
  *
  * @see atomium_theme_registry_alter()
  * @see _theme_process_registry()
@@ -435,13 +435,13 @@ function _atomium_process_theme_registry(array &$registry, array $themes) {
   foreach ($variable_process_phases as $phase_key => $phase) {
     foreach ($themes as $theme) {
       // Get the theme's base path.
-      $path = drupal_dirname($theme->filename);
+      $path = backdrop_dirname($theme->filename);
       $regexp = '/\.component\.inc$/';
       // Find theme function overrides.
-      foreach (drupal_system_listing($regexp, $path . '/templates', 'name', 0) as $name => $file) {
+      foreach (backdrop_system_listing($regexp, $path . '/templates', 'name', 0) as $name => $file) {
         // Strip off the extension.
         if (($pos = \strpos($name, '.')) !== FALSE) {
-          $name = drupal_substr($name, 0, $pos);
+          $name = backdrop_substr($name, 0, $pos);
         }
 
         // Transform "-" in file names to "_" to match theme hook naming scheme.
@@ -456,7 +456,7 @@ function _atomium_process_theme_registry(array &$registry, array $themes) {
           );
 
           // Include the file now so functions can be discovered below.
-          include_once DRUPAL_ROOT . '/' . $file->uri;
+          include_once BACKDROP_ROOT . '/' . $file->uri;
 
           if (!\in_array($file->uri, $registry[$hook]['includes'], TRUE)) {
             $registry[$hook]['includes'][] = $file->uri;
@@ -474,9 +474,9 @@ function _atomium_process_theme_registry(array &$registry, array $themes) {
       );
 
       // Find necessary templates in the theme.
-      $registry = drupal_array_merge_deep(
+      $registry = backdrop_array_merge_deep(
         $registry,
-        drupal_find_theme_templates($registry, '.tpl.php', $path)
+        backdrop_find_theme_templates($registry, '.tpl.php', $path)
       );
 
       // Iterate over each registered hook.

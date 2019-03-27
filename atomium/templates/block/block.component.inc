@@ -135,7 +135,7 @@ function atomium_preprocess_block(array &$variables, $hook) {
       break;
   }
 
-  $variables['atomium']['attributes']['wrapper']->append('class', drupal_html_class('block-' . $variables['block']->module));
+  $variables['atomium']['attributes']['wrapper']->append('class', backdrop_html_class('block-' . $variables['block']->module));
 
   $variables += array('classes' => array());
   $variables['atomium']['attributes']['wrapper']->merge(array('class' => $variables['classes']));

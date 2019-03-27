@@ -56,7 +56,7 @@ function atomium_preprocess_status_messages(array &$variables, $hook) {
   $output = array();
 
   $variables += array('messages' => array());
-  $status_messages = drupal_array_merge_deep($variables['messages'], drupal_get_messages($variables['display']));
+  $status_messages = backdrop_array_merge_deep($variables['messages'], backdrop_get_messages($variables['display']));
   foreach ($status_messages as $type => $messages) {
     $container = array(
       'messages' => array(

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\atomium;
+namespace Backdrop\atomium;
 
 /**
  * Class Attributes.
@@ -48,7 +48,7 @@ class Attributes implements \ArrayAccess, \IteratorAggregate {
            * @todo: admin/structure/views/settings.
            *
            * if ('id' === $attribute) {
-           *   $item = drupal_html_id($item);.
+           *   $item = backdrop_html_id($item);.
            * }
            */
 

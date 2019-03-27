@@ -23,7 +23,7 @@ abstract class AbstractTest extends TestCase {
 
     return \array_map(function ($file) {
       return array(
-        'hook' => drupal_basename($file->getRelativePathname(), '.yml'),
+        'hook' => backdrop_basename($file->getRelativePathname(), '.yml'),
         'content' => Yaml::parse($file->getContents()),
       );
     }, \iterator_to_array($finder));

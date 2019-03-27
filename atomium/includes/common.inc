@@ -20,10 +20,10 @@ function atomium_include($theme, $path) {
   static $themes = array();
 
   $themes += array(
-    $theme => drupal_get_path('theme', $theme),
+    $theme => backdrop_get_path('theme', $theme),
   );
 
-  if ($themes[$theme] && ($file = DRUPAL_ROOT . '/' . $themes[$theme] . '/' . $path) && \file_exists($file)) {
+  if ($themes[$theme] && ($file = BACKDROP_ROOT . '/' . $themes[$theme] . '/' . $path) && \file_exists($file)) {
     if (\is_dir($file)) {
       foreach (\glob($file . '/*.{inc,php}', GLOB_BRACE) as $file_to_include) {
         include_once $file_to_include;
@@ -133,13 +133,13 @@ function atomium_get_theme_info($theme_key = NULL, $key = NULL, $base_themes = T
 
   if (!empty($info)) {
     if (\is_array($value)) {
-      $value = drupal_array_merge_deep($value, $info);
+      $value = backdrop_array_merge_deep($value, $info);
     }
     elseif (empty($value)) {
       $value = $info;
     }
     else {
-      $value = drupal_array_merge_deep((array) $value, $info);
+      $value = backdrop_array_merge_deep((array) $value, $info);
     }
   }
 
@@ -205,7 +205,7 @@ function &_atomium_get_attributes(array &$element, $property = 'attributes') {
  */
 function atomium_discover_templates() {
   foreach (_atomium_get_base_themes(NULL, TRUE) as $theme) {
-    $path = drupal_get_path('theme', $theme) . '/templates';
+    $path = backdrop_get_path('theme', $theme) . '/templates';
 
     if (!\is_dir($path)) {
       continue;
@@ -234,15 +234,15 @@ function atomium_discover_templates() {
 }
 
 /**
- * Verbatim copy of drupal_get_breadcrumb().
+ * Verbatim copy of backdrop_get_breadcrumb().
  *
  * The only modified stuff are the call to menu_get_active_breadcrumb() which
  * is replaced with atomium_menu_get_active_breadcrumb().
  *
- * @see drupal_get_breadcrumb()
+ * @see backdrop_get_breadcrumb()
  */
-function atomium_drupal_get_breadcrumb() {
-  $breadcrumb = drupal_set_breadcrumb();
+function atomium_backdrop_get_breadcrumb() {
+  $breadcrumb = backdrop_set_breadcrumb();
 
   if (!isset($breadcrumb)) {
     $breadcrumb = atomium_menu_get_active_breadcrumb();
@@ -265,7 +265,7 @@ function atomium_menu_get_active_breadcrumb() {
   $breadcrumb = array();
 
   // No breadcrumb for the front page.
-  if (drupal_is_front_page()) {
+  if (backdrop_is_front_page()) {
     return $breadcrumb;
   }
 
@@ -275,7 +275,7 @@ function atomium_menu_get_active_breadcrumb() {
 
     // Allow modules to alter the breadcrumb, if possible, as that is much
     // faster than rebuilding an entirely new active trail.
-    drupal_alter('menu_breadcrumb', $active_trail, $item);
+    backdrop_alter('menu_breadcrumb', $active_trail, $item);
 
     // Don't show a link to the current page in the breadcrumb trail.
     $end = \end($active_trail);
@@ -437,9 +437,9 @@ function _atomium_block_get_render_array($module, $delta, $region = NULL, $block
  *
  *   The result will be: array('container__foo__bar', 'block__foo__bar')
  *
- *   Quick note about the drupal_strtolower() call:
+ *   Quick note about the backdrop_strtolower() call:
  *   We must ensure lowercase values because get_defined_functions()
- *   in drupal_group_functions_by_prefix() returns functions in lower case.
+ *   in backdrop_group_functions_by_prefix() returns functions in lower case.
  *
  * @see http://php.net/manual/en/function.get-defined-functions.php
  *
@@ -483,7 +483,7 @@ function _atomium_extend_theme_hook($base = NULL, $suggestions = array()) {
     \str_replace(
       '-',
       '_',
-      drupal_strtolower(
+      backdrop_strtolower(
         \implode(
           '__',
           \array_map(function ($suggestion) {
@@ -577,10 +577,10 @@ function _atomium_array_flatten(array $array, array &$storage, $parentKey = '') 
  *   The settings as an array.
  */
 function atomium_get_settings($setting_keys, $base_themes = TRUE, array $value_callbacks = array('trim')) {
-  static $drupal_static_fast;
+  static $backdrop_static_fast;
 
-  if (!isset($drupal_static_fast)) {
-    $drupal_static_fast['atomium_get_settings'] = &drupal_static(__FUNCTION__);
+  if (!isset($backdrop_static_fast)) {
+    $backdrop_static_fast['atomium_get_settings'] = &backdrop_static(__FUNCTION__);
   }
 
   $theme_key = $GLOBALS['theme_key'];
@@ -589,7 +589,7 @@ function atomium_get_settings($setting_keys, $base_themes = TRUE, array $value_c
     $cid .= '+';
   }
 
-  $settings_by_theme = &$drupal_static_fast['atomium_get_settings'];
+  $settings_by_theme = &$backdrop_static_fast['atomium_get_settings'];
 
   if (!isset($settings_by_theme[$cid])) {
     $settings_by_theme[$cid] = array();
@@ -645,9 +645,9 @@ function atomium_get_base_hook($hook) {
 /**
  * Recursive element_children() function.
  *
- * As the default element_children() from Drupal is fine for single dimension
+ * As the default element_children() from Backdrop is fine for single dimension
  * arrays, this function deal with multiple dimensions arrays.
- * It applies a callback to each Drupal element found in it.
+ * It applies a callback to each Backdrop element found in it.
  * The variable $context['parents'] of type string[] will hold the parents
  * hierarchy of the element.
  *

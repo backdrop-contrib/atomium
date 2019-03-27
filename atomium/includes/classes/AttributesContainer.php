@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\atomium;
+namespace Backdrop\atomium;
 
 /**
  * Class AttributesContainer.

@@ -59,12 +59,12 @@ function atomium_preprocess_menu_overview_form(array &$variables, $hook) {
       $row[] = theme(
         'indentation',
         array('size' => $element['#item']['depth'] - 1)
-        ) . drupal_render($element['title']);
+        ) . backdrop_render($element['title']);
       $row[] = array(
-        'data' => drupal_render($element['hidden']),
+        'data' => backdrop_render($element['hidden']),
         'class' => array('checkbox', 'menu-enabled'),
       );
-      $row[] = drupal_render($element['weight']) . drupal_render($element['plid']) . drupal_render($element['mlid']);
+      $row[] = backdrop_render($element['weight']) . backdrop_render($element['plid']) . backdrop_render($element['mlid']);
       $row = \array_merge($row, $operations);
 
       $row = \array_merge(array('data' => $row), $element['#attributes']);

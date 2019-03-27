@@ -400,7 +400,7 @@ function atomium_preprocess_table(array &$variables, $hook) {
 
   // Add sticky headers, if applicable.
   if ($sticky === TRUE && \is_array($header) && \count($header) !== 0) {
-    drupal_add_js('misc/tableheader.js');
+    backdrop_add_js('misc/tableheader.js');
     // Add 'sticky-enabled' class to the table to identify it for JS.
     // This is needed to target tables constructed by this function.
     $variables['atomium']['attributes']['wrapper']

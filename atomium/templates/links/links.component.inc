@@ -85,7 +85,7 @@ function atomium_preprocess_links(array &$variables, $hook) {
     if (
       isset($link['href']) &&
       (empty($link['language']) || $link['language']->language === $language_url->language) &&
-      ($link['href'] === $_GET['q'] || ($link['href'] === '<front>' && drupal_is_front_page()))) {
+      ($link['href'] === $_GET['q'] || ($link['href'] === '<front>' && backdrop_is_front_page()))) {
       $link['attributes_array']['class'][] = 'active';
     }
 

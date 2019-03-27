@@ -71,7 +71,7 @@ function atomium_preprocess_user_picture(array &$variables, $hook) {
         '#alt' => $alt,
       );
 
-      // If the image does not have a valid Drupal scheme (for eg. HTTP),
+      // If the image does not have a valid Backdrop scheme (for eg. HTTP),
       // don't load image styles.
       if (module_exists('image') && file_valid_uri($filepath) && $style = variable_get('user_picture_style', '')) {
         $variables[$variables['base_hook']] += array(
