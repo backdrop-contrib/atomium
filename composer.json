@@ -1,7 +1,6 @@
 {
     "name": "ec-europa/atomium",
     "description": "A clean and atomic base theme.",
-    "type": "drupal-theme",
     "license": "GPL-2.0",
     "homepage": "https://drupal.org/project/atomium",
     "authors": [
@@ -17,21 +16,12 @@
         "source": "https://drupal.org/project/atomium"
     },
     "require-dev": {
-        "composer/installers": "^1.6",
-        "drupal-composer/preserve-paths": "^0.1.5",
-        "drupal/admin_menu": "3.0.0-rc6",
-        "drupal/composer_autoloader": "^1",
-        "drupal/devel": "^1.7",
-        "drupal/drupal": "^7.66",
-        "drupal/drupal-extension": "~3.4",
-        "drupal/realistic_dummy_content": "^2",
-        "drupol/drupal-conventions": "^1.4.11",
+        "backdrop/backdrop": "1.13.0",
+        "backdrop-contrib/drush": "0.1.0",
+        "drupol/backdrop-conventions": "^0.1.2",
         "drush/drush": "^8.2.3",
-        "mikey179/vfsstream": "^1.6",
         "phptaskman/drupal": "^0.1.15",
-        "phpunit/phpunit": "^5.7",
-        "webflo/drupal-finder": "^1.1",
-        "webmozart/path-util": "^2.3"
+        "phpunit/phpunit": "^5.7"
     },
     "autoload": {
         "psr-4": {
@@ -47,21 +37,46 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/7"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "backdrop/backdrop",
+                "version": "1.13.0",
+                "dist": {
+                    "url": "https://github.com/backdrop/backdrop/releases/download/1.13.0-preview/backdrop.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/backdrop/backdrop/",
+                    "type": "git",
+                    "reference": "1.x"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "backdrop-contrib/drush",
+                "version": "0.1.0",
+                "dist": {
+                    "url": "https://github.com/backdrop-contrib/drush/releases/download/0.1.0/drush.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/backdrop-contrib/drush/",
+                    "type": "git",
+                    "reference": "tags/"
+                }
+            }
         }
     ],
     "scripts": {
-        "post-update-cmd": "./vendor/bin/taskman drupal:site-setup",
-        "post-install-cmd": "./vendor/bin/taskman drupal:site-setup",
+        "post-update-cmd": "./vendor/bin/taskman backdrop:setup",
+        "post-install-cmd": "./vendor/bin/taskman backdrop:setup",
         "grumphp": "./vendor/bin/grumphp run"
     },
     "extra": {
-        "installer-paths": {
-            "build/": ["type:drupal-core"],
-            "build/profiles/{$name}/": ["type:drupal-profile"],
-            "build/sites/all/drush/{$name}/": ["type:drupal-drush"],
-            "build/sites/all/modules/contrib/{$name}/": ["type:drupal-module"],
-            "build/sites/all/themes/contrib/{$name}/": ["type:drupal-theme"]
-        },
         "preserve-paths": [
             "build/sites/default"
         ]
