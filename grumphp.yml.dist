@@ -1,8 +1,8 @@
 imports:
-  - { resource: vendor/drupol/drupal-conventions/config/drupal7/php5.6/grumphp.yml }
+  - { resource: vendor/drupol/backdrop-conventions/config/backdrop/grumphp.yml }
 parameters:
   extensions:
-    - drupol\DrupalConventions\GrumphpTasksExtension
+    - drupol\BackdropConventions\GrumphpTasksExtension
   extra_tasks:
     phpunit:
       always_execute: true
