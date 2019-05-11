@@ -72,15 +72,13 @@ locations of template files right in your HTML markup (as HTML comments).
 
 # Contributing
 
-Atomium is licenced under the [EUPL Licence](https://en.wikipedia.org/wiki/European_Union_Public_Licence).
-All contributions to Atomium and its sub-themes are made on [Github](https://github.com/ec-europa/atomium), the main
+Atomium is licenced under the [GPL-2 Licence](LICENSE.txt).
+All contributions to Atomium and its sub-themes are made on [Github](https://github.com/backdrop-contrib/atomium), the main
 Atomium repository.
 
 To ensure its code quality, Atomium depends on: 
  - [GrumPHP](https://github.com/phpro/grumphp)
  - [Backdrop conventions](https://github.com/drupol/backdrop-conventions)
-
-In order to use it and pass the automated tests, run:
 
 # Extending
 
