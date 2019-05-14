@@ -1,5 +1,5 @@
 # Atomium
-[![Current Release](https://img.shields.io/github/issues/backdrop-contrib/atomium.svg?style=flat-square)](https://github.com/backdrop-contrib/atomium/releases)
+[![Current Release](https://img.shields.io/github/release/backdrop-contrib/atomium.svg?style=flat-square)](https://github.com/backdrop-contrib/atomium/releases)
 [![GitHub issues](https://img.shields.io/github/issues/backdrop-contrib/atomium.svg?style=flat-square)](https://github.com/backdrop-contrib/atomium/issues?q=is:open+is:issue) 
 
 The Atomium theme is a base theme.
