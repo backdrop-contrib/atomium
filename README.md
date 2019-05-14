@@ -1,7 +1,6 @@
 # Atomium
-[![Build Status](https://drone.fpfis.eu/api/badges/ec-europa/atomium/status.svg?branch=7.x-3.x)](https://drone.fpfis.eu/ec-europa/atomium) 
-[![GitHub issues](https://img.shields.io/github/issues/ec-europa/atomium.svg)](https://github.com/ec-europa/atomium/issues?q=is:open+is:issue) 
-[![Current Release](https://img.shields.io/github/release/ec-europa/atomium.svg)](https://github.com/ec-europa/atomium/releases)
+[![GitHub issues](https://img.shields.io/github/issues/backdrop-contrib/atomium.svg)](https://github.com/backdrop-contrib/atomium/issues?q=is:open+is:issue) 
+[![Current Release](https://img.shields.io/github/release/backdrop-contrib/atomium.svg)](https://github.com/backdrop-contrib/atomium/releases)
 
 The Atomium theme is a base theme.
 
