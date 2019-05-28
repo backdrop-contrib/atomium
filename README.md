@@ -18,7 +18,6 @@ Table of contents:
 - [Contributing](#contributing)
 - [Extending](#extending)
 - [Developers note](#developers-note)
-- [Known issues](#known-issues)
 - [In the press](#in-the-press)
 - [Current maintainers](#current-maintainers)
 - [Credits](#credits)
@@ -177,13 +176,6 @@ The rendering process is at the very end of the Backdrop's chain of preprocess,
 process and render functions.
 
 [Go to top](#table-of-content)
-
-# Known issues
-
-* Vertical tabs: Unable to apply the theme function call inheritance. It has a link with the process function. 
-
-[Go to top](#table-of-content)
-
 
 # In the press
 
